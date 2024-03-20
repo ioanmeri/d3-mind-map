@@ -1,0 +1,29 @@
+{
+  "name": "d3-mind-map",
+  "version": "1.0.0",
+  "description": "mind-map using d3,js",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+    "prebuild": "rmdir dist /s /q",
+    "build": "parcel build index.html",
+    "predeploy": "rmdir dist /s /q && parcel build index.html --public-url ./",
+    "deploy": "gh-pages -d dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gh-pages": "^2.1.1",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.24.0",
+    "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.0",
+    "@types/d3": "^5.7.2",
+    "d3": "^5.14.2",
+    "uuid": "^3.3.3"
+  }
+}
