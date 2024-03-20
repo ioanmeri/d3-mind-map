@@ -155,7 +155,7 @@ export class MindMap {
   /**
    * add new child nodes
    */
-  saveMap(nodesArg, connectionsArg) {
+  saveMap(nodesArg?: any, connectionsArg?: any) {
     const nodes = [...(nodesArg || this.nodes)];
     const connections = [...(connectionsArg || this.connections)];
     localStorage.setItem(
@@ -195,7 +195,21 @@ export class MindMap {
    * todo: before remove nodes check all link
    */
   removeNode(d) {
-    alert(`node remove clicked ;) ==> ${d.text}`);
+    console.log(d, this);
+    const { id: clickedNodeId } = d;
+    const hasTargets = this.connections.some(
+      ({ source }) => source.id === clickedNodeId
+    );
+    if (hasTargets) {
+      return alert("Node has targets. You need to remove them first");
+    }
+    this.nodes = this.nodes.filter(({ id }) => id !== clickedNodeId);
+    this.connections = this.connections.filter(
+      ({ target }) => target.id !== clickedNodeId
+    );
+    console.log(this.nodes, this.connections);
+    this.renderMap();
+    this.saveMap();
   }
   /**
    * edit node text
